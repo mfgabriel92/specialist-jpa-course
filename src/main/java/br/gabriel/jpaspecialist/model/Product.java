@@ -1,13 +1,15 @@
 package br.gabriel.jpaspecialist.model;
 
-import lombok.EqualsAndHashCode;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import java.math.BigDecimal;
 
 @Entity
+@Table(name = "products")
 @Data
 @EqualsAndHashCode(of = "id")
 public class Product {
