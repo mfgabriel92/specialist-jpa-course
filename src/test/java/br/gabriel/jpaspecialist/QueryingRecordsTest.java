@@ -1,9 +1,7 @@
 package br.gabriel.jpaspecialist;
 
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
+import br.gabriel.jpaspecialist.model.Product;
+import org.junit.*;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -21,6 +19,25 @@ public class QueryingRecordsTest {
     @Before
     public void setUp() {
         entityManager = entityManagerFactory.createEntityManager();
+    }
+    
+    @Test
+    public void shouldFindProductByID() {
+        Product product = entityManager.find(Product.class, 1);
+        
+        Assert.assertNotNull(product);
+        Assert.assertEquals("Kindle", product.getName());
+    }
+    
+    @Test
+    public void shouldRefreshTheReference() {
+        Product product = entityManager.find(Product.class, 1);
+        product.setName("Microsoft Surface Pro");
+        
+        entityManager.refresh(product);
+        
+        Assert.assertNotNull(product);
+        Assert.assertEquals("Kindle", product.getName());
     }
     
     @After
