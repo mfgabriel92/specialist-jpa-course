@@ -4,9 +4,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.EqualsAndHashCode.Include;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "clients")
@@ -19,5 +17,6 @@ public class Client {
     
     private String name;
     
+    @Enumerated(EnumType.STRING)
     private Gender gender;
 }

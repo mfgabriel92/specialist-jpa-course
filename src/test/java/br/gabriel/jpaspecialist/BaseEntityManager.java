@@ -33,4 +33,17 @@ public class BaseEntityManager {
     public static void tearDownAfterClass() {
         entityManagerFactory.close();
     }
+    
+    protected void persist(Object entity) {
+        entityManager.getTransaction().begin();
+        entityManager.merge(entity);
+        entityManager.getTransaction().commit();
+        entityManager.clear();
+    }
+    
+    protected void remove(Object entity) {
+        entityManager.getTransaction().begin();
+        entityManager.remove(entity);
+        entityManager.getTransaction().commit();
+    }
 }

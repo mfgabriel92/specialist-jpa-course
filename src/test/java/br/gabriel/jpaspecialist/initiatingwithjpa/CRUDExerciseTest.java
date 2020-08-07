@@ -12,10 +12,7 @@ public class CRUDExerciseTest extends BaseEntityManager {
         client.setId(2);
         client.setName("Jeryanne Jane");
         
-        entityManager.getTransaction().begin();
-        entityManager.persist(client);
-        entityManager.getTransaction().commit();
-        entityManager.clear();
+        persist(client);
         
         Client clientAssert = entityManager.find(Client.class, 2);
         Assert.assertNotNull(clientAssert);
@@ -34,10 +31,7 @@ public class CRUDExerciseTest extends BaseEntityManager {
         Client client = entityManager.find(Client.class, 1);
         client.setName("Gabriel M. Fernandes");
         
-        entityManager.getTransaction().begin();
-        entityManager.merge(client);
-        entityManager.getTransaction().commit();
-        entityManager.clear();
+        persist(client);
         
         Client clientAssert = entityManager.find(Client.class, 1);
         Assert.assertNotNull(clientAssert);
@@ -48,9 +42,7 @@ public class CRUDExerciseTest extends BaseEntityManager {
     public void shouldDeleteAClient() {
         Client client = entityManager.find(Client.class, 1);
         
-        entityManager.getTransaction().begin();
-        entityManager.remove(client);
-        entityManager.getTransaction().commit();
+        remove(client);
         
         Client clientAssert = entityManager.find(Client.class, 1);
         Assert.assertNull(clientAssert);

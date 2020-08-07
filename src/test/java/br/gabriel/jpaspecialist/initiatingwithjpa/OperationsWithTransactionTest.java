@@ -16,10 +16,7 @@ public class OperationsWithTransactionTest extends BaseEntityManager {
         product.setDescription("The most powerful notebooks featuring fast processors, incredible graphics, Touch Bar, and a spectacular Retina display");
         product.setPrice(new BigDecimal("2399.00"));
     
-        entityManager.getTransaction().begin();
-        entityManager.persist(product);
-        entityManager.getTransaction().commit();
-        entityManager.clear();
+        persist(product);
         
         Product assertProduct = entityManager.find(Product.class, product.getId());
         Assert.assertNotNull(assertProduct);
@@ -29,9 +26,7 @@ public class OperationsWithTransactionTest extends BaseEntityManager {
     public void shouldRemoveAProduct() {
         Product product = entityManager.find(Product.class, 3);
     
-        entityManager.getTransaction().begin();
-        entityManager.remove(product);
-        entityManager.getTransaction().commit();
+        remove(product);
 
         Product assertProduct = entityManager.find(Product.class, 3);
         Assert.assertNull(assertProduct);
@@ -45,10 +40,7 @@ public class OperationsWithTransactionTest extends BaseEntityManager {
         product.setDescription("Get the new Kindle Paperwhite");
         product.setPrice(new BigDecimal("399.00"));
         
-        entityManager.getTransaction().begin();
-        entityManager.merge(product);
-        entityManager.getTransaction().commit();
-        entityManager.clear();
+        persist(product);
     
         Product assertProduct = entityManager.find(Product.class, product.getId());
         Assert.assertNotNull(assertProduct);
@@ -77,10 +69,7 @@ public class OperationsWithTransactionTest extends BaseEntityManager {
         product.setDescription("Collaborate for free with online versions of Microsoft Word, PowerPoint, Excel, and OneNote. Save documents, spreadsheets, and presentations online");
         product.setPrice(new BigDecimal("299.00"));
         
-        entityManager.getTransaction().begin();
-        entityManager.merge(product);
-        entityManager.getTransaction().commit();
-        entityManager.clear();
+        persist(product);
         
         Product assertProduct = entityManager.find(Product.class, product.getId());
         Assert.assertNotNull(assertProduct);
