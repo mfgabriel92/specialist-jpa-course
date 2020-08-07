@@ -85,4 +85,19 @@ public class OperationsWithTransactionTest extends BaseEntityManager {
         Product assertProduct = entityManager.find(Product.class, product.getId());
         Assert.assertNotNull(assertProduct);
     }
+    
+    @Test
+    public void shouldPreventADatabaseOperation() {
+        Product product = entityManager.find(Product.class, 1);
+        entityManager.detach(product);
+        
+        entityManager.getTransaction().begin();
+        product.setName("Kindle Paperwhite 2nd Generation");
+        entityManager.getTransaction().commit();
+        entityManager.clear();
+        
+        Product assertProduct = entityManager.find(Product.class, product.getId());
+        Assert.assertNotNull(assertProduct);
+        Assert.assertEquals("Kindle", assertProduct.getName());
+    }
 }
