@@ -68,4 +68,21 @@ public class OperationsWithTransactionTest extends BaseEntityManager {
         Assert.assertNotNull(assertProduct);
         Assert.assertEquals("Kindle Paperwhite 2nd Generation", assertProduct.getName());
     }
+    
+    @Test
+    public void shouldInsertNewObjectWithMerge() {
+        Product product = new Product();
+        product.setId(4);
+        product.setName("Microsoft Office");
+        product.setDescription("Collaborate for free with online versions of Microsoft Word, PowerPoint, Excel, and OneNote. Save documents, spreadsheets, and presentations online");
+        product.setPrice(new BigDecimal("299.00"));
+        
+        entityManager.getTransaction().begin();
+        entityManager.merge(product);
+        entityManager.getTransaction().commit();
+        entityManager.clear();
+        
+        Product assertProduct = entityManager.find(Product.class, product.getId());
+        Assert.assertNotNull(assertProduct);
+    }
 }
