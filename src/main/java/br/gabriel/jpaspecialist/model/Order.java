@@ -30,4 +30,7 @@ public class Order {
     
     @Column(name = "concluded_at")
     private LocalDateTime concludedAt;
+    
+    @Embedded
+    private Address address;
 }
