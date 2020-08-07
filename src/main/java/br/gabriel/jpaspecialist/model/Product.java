@@ -2,6 +2,7 @@ package br.gabriel.jpaspecialist.model;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.EqualsAndHashCode.Include;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -11,9 +12,10 @@ import java.math.BigDecimal;
 @Entity
 @Table(name = "products")
 @Data
-@EqualsAndHashCode(of = "id")
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class Product {
     @Id
+    @Include
     private Integer id;
     
     private String name;
