@@ -9,15 +9,15 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "clients")
+@Table(name = "categories")
 @Data
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-public class Client {
+public class Category {
     @Id
     @Include
     private Integer id;
     
     private String name;
     
-    private Gender gender;
+    private Integer parentCategoryId;
 }

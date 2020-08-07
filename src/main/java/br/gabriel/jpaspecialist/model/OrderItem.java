@@ -7,17 +7,22 @@ import lombok.EqualsAndHashCode.Include;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.math.BigDecimal;
 
 @Entity
-@Table(name = "clients")
+@Table(name = "order_items")
 @Data
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-public class Client {
+public class OrderItem {
     @Id
     @Include
     private Integer id;
     
-    private String name;
+    private Integer orderId;
     
-    private Gender gender;
+    private Integer productId;
+    
+    private Integer quantity;
+    
+    private BigDecimal price;
 }

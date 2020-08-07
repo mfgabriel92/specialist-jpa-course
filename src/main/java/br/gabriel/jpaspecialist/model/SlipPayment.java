@@ -9,15 +9,17 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "clients")
+@Table(name = "slip_payments")
 @Data
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-public class Client {
+public class SlipPayment {
     @Id
     @Include
     private Integer id;
     
-    private String name;
+    private Integer orderId;
     
-    private Gender gender;
+    private PaymentStatus status;
+    
+    private String barCode;
 }
