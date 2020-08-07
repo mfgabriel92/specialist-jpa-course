@@ -4,6 +4,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.EqualsAndHashCode.Include;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -18,8 +19,10 @@ public class OrderItem {
     @Include
     private Integer id;
     
+    @Column(name = "order_id")
     private Integer orderId;
     
+    @Column(name = "product_id")
     private Integer productId;
     
     private Integer quantity;

@@ -4,6 +4,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.EqualsAndHashCode.Include;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -19,5 +20,6 @@ public class Category {
     
     private String name;
     
+    @Column(name = "parent_category_id")
     private Integer parentCategoryId;
 }
