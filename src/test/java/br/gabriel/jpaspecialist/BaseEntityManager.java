@@ -36,6 +36,13 @@ public class BaseEntityManager {
     
     protected void persist(Object entity) {
         entityManager.getTransaction().begin();
+        entityManager.persist(entity);
+        entityManager.getTransaction().commit();
+        entityManager.clear();
+    }
+    
+    protected void merge(Object entity) {
+        entityManager.getTransaction().begin();
         entityManager.merge(entity);
         entityManager.getTransaction().commit();
         entityManager.clear();

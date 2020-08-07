@@ -4,18 +4,16 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.EqualsAndHashCode.Include;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "categories")
 @Data
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class Category {
-    @Id
     @Include
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Id
     private Integer id;
     
     private String name;

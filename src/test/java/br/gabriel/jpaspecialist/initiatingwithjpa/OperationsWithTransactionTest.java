@@ -40,7 +40,7 @@ public class OperationsWithTransactionTest extends BaseEntityManager {
         product.setDescription("Get the new Kindle Paperwhite");
         product.setPrice(new BigDecimal("399.00"));
         
-        persist(product);
+        merge(product);
     
         Product assertProduct = entityManager.find(Product.class, product.getId());
         Assert.assertNotNull(assertProduct);

@@ -31,7 +31,7 @@ public class CRUDExerciseTest extends BaseEntityManager {
         Client client = entityManager.find(Client.class, 1);
         client.setName("Gabriel M. Fernandes");
         
-        persist(client);
+        merge(client);
         
         Client clientAssert = entityManager.find(Client.class, 1);
         Assert.assertNotNull(clientAssert);
