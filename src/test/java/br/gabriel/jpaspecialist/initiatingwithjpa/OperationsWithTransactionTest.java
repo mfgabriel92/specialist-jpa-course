@@ -24,4 +24,16 @@ public class OperationsWithTransactionTest extends BaseEntityManager {
         Product assertProduct = entityManager.find(Product.class, product.getId());
         Assert.assertNotNull(assertProduct);
     }
+    
+    @Test
+    public void shouldRemoveAProduct() {
+        Product product = entityManager.find(Product.class, 3);
+    
+        entityManager.getTransaction().begin();
+        entityManager.remove(product);
+        entityManager.getTransaction().commit();
+
+        Product assertProduct = entityManager.find(Product.class, 3);
+        Assert.assertNull(assertProduct);
+    }
 }
