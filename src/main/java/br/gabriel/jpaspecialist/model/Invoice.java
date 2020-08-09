@@ -17,11 +17,12 @@ public class Invoice {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     
-    @Column(name = "order_id")
-    private Integer orderId;
-    
     private String xml;
     
+    @OneToOne
+    @JoinColumn(name = "order_id")
+    private Order order;
+    
     @Column(name = "created_at")
-    private Date creatdAt;
+    private Date createdAt;
 }
