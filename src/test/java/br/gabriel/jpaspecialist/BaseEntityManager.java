@@ -35,6 +35,10 @@ public class BaseEntityManager {
         entityManagerFactory.close();
     }
     
+    protected <T> T find(Class<T> clazz, Integer id) {
+        return entityManager.find(clazz, id);
+    }
+    
     protected void persist(Object ...entities) {
         entityManager.getTransaction().begin();
         Arrays.stream(entities).forEach(entity -> entityManager.persist(entity));
