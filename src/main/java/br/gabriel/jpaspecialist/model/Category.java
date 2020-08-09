@@ -26,4 +26,7 @@ public class Category {
     
     @OneToMany(mappedBy = "parentCategory")
     private List<Category> categories = new ArrayList<>();
+    
+    @ManyToMany(mappedBy = "categories")
+    private List<Product> products = new ArrayList<>();
 }

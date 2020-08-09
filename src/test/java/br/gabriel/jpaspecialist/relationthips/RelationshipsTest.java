@@ -7,6 +7,7 @@ import org.junit.Test;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.Arrays;
 
 public class RelationshipsTest extends BaseEntityManager {
     @Test
@@ -74,5 +75,17 @@ public class RelationshipsTest extends BaseEntityManager {
         
         Client assertClient = entityManager.find(Client.class, client.getId());
         Assert.assertFalse(assertClient.getOrders().isEmpty());
+    }
+    
+    @Test
+    public void shouldTestManyToMany() {
+        Product product = entityManager.find(Product.class, 1);
+        Category category = entityManager.find(Category.class, 1);
+        
+        product.setCategories(Arrays.asList(category));
+        persist(product);
+    
+        Product assertProduct = entityManager.find(Product.class, product.getId());
+        Assert.assertFalse(assertProduct.getCategories().isEmpty());
     }
 }
