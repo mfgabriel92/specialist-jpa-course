@@ -8,6 +8,7 @@ import org.junit.BeforeClass;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import java.util.Arrays;
 
 public class BaseEntityManager {
     protected static EntityManagerFactory entityManagerFactory;
@@ -34,23 +35,23 @@ public class BaseEntityManager {
         entityManagerFactory.close();
     }
     
-    protected void persist(Object entity) {
+    protected void persist(Object ...entities) {
         entityManager.getTransaction().begin();
-        entityManager.persist(entity);
+        Arrays.stream(entities).forEach(entity -> entityManager.persist(entity));
         entityManager.getTransaction().commit();
         entityManager.clear();
     }
     
-    protected void merge(Object entity) {
+    protected void merge(Object ...entities) {
         entityManager.getTransaction().begin();
-        entityManager.merge(entity);
+        Arrays.stream(entities).forEach(entity -> entityManager.merge(entity));
         entityManager.getTransaction().commit();
         entityManager.clear();
     }
     
-    protected void remove(Object entity) {
+    protected void remove(Object ...entities) {
         entityManager.getTransaction().begin();
-        entityManager.remove(entity);
+        Arrays.stream(entities).forEach(entity -> entityManager.remove(entity));
         entityManager.getTransaction().commit();
     }
 }

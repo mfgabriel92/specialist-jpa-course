@@ -5,6 +5,8 @@ import lombok.EqualsAndHashCode;
 import lombok.EqualsAndHashCode.Include;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "clients")
@@ -20,4 +22,7 @@ public class Client {
     
     @Enumerated(EnumType.STRING)
     private Gender gender;
+    
+    @OneToMany(mappedBy = "client", fetch = FetchType.LAZY)
+    private List<Order> orders = new ArrayList<>();
 }
