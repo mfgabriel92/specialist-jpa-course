@@ -19,7 +19,7 @@ public class Invoice {
     
     private String xml;
     
-    @OneToOne
+    @OneToOne(optional = false)
     @JoinColumn(name = "order_id")
     private Order order;
     

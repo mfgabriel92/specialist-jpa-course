@@ -27,7 +27,7 @@ public class Order {
     @Enumerated(EnumType.STRING)
     private OrderStatus status;
     
-    @ManyToOne
+    @ManyToOne(optional = false)
     @JoinColumn(name = "client_id")
     private Client client;
     

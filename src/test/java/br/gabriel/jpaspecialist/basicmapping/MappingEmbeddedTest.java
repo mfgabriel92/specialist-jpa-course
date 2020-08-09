@@ -2,6 +2,7 @@ package br.gabriel.jpaspecialist.basicmapping;
 
 import br.gabriel.jpaspecialist.BaseEntityManager;
 import br.gabriel.jpaspecialist.model.Address;
+import br.gabriel.jpaspecialist.model.Client;
 import br.gabriel.jpaspecialist.model.Order;
 import br.gabriel.jpaspecialist.model.OrderStatus;
 import org.junit.Assert;
@@ -13,6 +14,8 @@ import java.time.LocalDateTime;
 public class MappingEmbeddedTest extends BaseEntityManager {
     @Test
     public void shouldTestEmbeddedObject() {
+        Client client = entityManager.find(Client.class, 1);
+        
         Address address = new Address();
         address.setPostalCode("99999");
         address.setStreet("Lorem St.");
@@ -27,6 +30,7 @@ public class MappingEmbeddedTest extends BaseEntityManager {
         order.setStatus(OrderStatus.WAITING);
         order.setTotal(new BigDecimal("78.60"));
         order.setAddress(address);
+        order.setClient(client);
         
         persist(order);
         
