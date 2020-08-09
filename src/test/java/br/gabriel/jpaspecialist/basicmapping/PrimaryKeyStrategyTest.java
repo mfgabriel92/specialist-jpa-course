@@ -7,7 +7,7 @@ import org.junit.Test;
 
 public class PrimaryKeyStrategyTest extends BaseEntityManager {
     @Test
-    public void shouldTestGeneratedValueStrategyAuto() {
+    public void shouldTestGeneratedValueStrategy() {
         Category category = new Category();
         category.setName("Electronics");
     
