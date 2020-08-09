@@ -5,6 +5,8 @@ import lombok.EqualsAndHashCode;
 import lombok.EqualsAndHashCode.Include;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "categories")
@@ -18,6 +20,10 @@ public class Category {
     
     private String name;
     
-    @Column(name = "parent_category_id")
-    private Integer parentCategoryId;
+    @ManyToOne
+    @JoinColumn(name = "parent_category_id")
+    private Category parentCategory;
+    
+    @OneToMany(mappedBy = "parentCategory")
+    private List<Category> categories = new ArrayList<>();
 }
