@@ -1,9 +1,7 @@
 package br.gabriel.jpaspecialist.relationthips;
 
 import br.gabriel.jpaspecialist.BaseEntityManager;
-import br.gabriel.jpaspecialist.model.Client;
-import br.gabriel.jpaspecialist.model.Order;
-import br.gabriel.jpaspecialist.model.OrderStatus;
+import br.gabriel.jpaspecialist.model.*;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -25,5 +23,31 @@ public class RelationshipsTest extends BaseEntityManager {
         Order assertOrder = entityManager.find(Order.class, order.getId());
         Assert.assertNotNull(assertOrder);
         Assert.assertNotNull(assertOrder.getClient());
+    }
+    
+    @Test
+    public void shouldTestManyToOneChallengeWithOrderItem() {
+        Client client = entityManager.find(Client.class, 1);
+        Product product = entityManager.find(Product.class, 1);
+    
+        OrderItem orderItem = new OrderItem();
+        orderItem.setProduct(product);
+        orderItem.setQuantity(3);
+        orderItem.setPrice(new BigDecimal(orderItem.getQuantity()).multiply(orderItem.getProduct().getPrice()));
+    
+        Order order = new Order();
+        order.setTotal(orderItem.getPrice());
+        order.setStatus(OrderStatus.WAITING);
+        order.setClient(client);
+        order.setCreatedAt(LocalDateTime.now());
+    
+        orderItem.setOrder(order);
+    
+        persist(order);
+        persist(orderItem);
+    
+        OrderItem assertOrderItem = entityManager.find(OrderItem.class, orderItem.getId());
+        Assert.assertNotNull(assertOrderItem.getOrder());
+        Assert.assertNotNull(assertOrderItem.getProduct());
     }
 }

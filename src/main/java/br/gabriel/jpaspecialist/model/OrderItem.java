@@ -16,12 +16,14 @@ public class OrderItem {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
+    @ManyToOne
+    @JoinColumn(name = "order_id")
+    private Order order;
     
-    @Column(name = "order_id")
-    private Integer orderId;
-    
-    @Column(name = "product_id")
-    private Integer productId;
+    @ManyToOne
+    @JoinColumn(name = "product_id")
+    private Product product;
     
     private Integer quantity;
     

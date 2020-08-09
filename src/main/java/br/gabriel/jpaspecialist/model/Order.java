@@ -7,6 +7,7 @@ import lombok.EqualsAndHashCode.Include;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "orders")
@@ -29,6 +30,9 @@ public class Order {
     @ManyToOne
     @JoinColumn(name = "client_id")
     private Client client;
+    
+    @OneToMany(mappedBy = "order")
+    private List<OrderItem> items;
     
     @Column(name = "created_at")
     private LocalDateTime createdAt;
