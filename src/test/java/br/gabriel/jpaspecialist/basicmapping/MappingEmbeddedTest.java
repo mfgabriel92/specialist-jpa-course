@@ -23,7 +23,6 @@ public class MappingEmbeddedTest extends BaseEntityManager {
         address.setState("Amet");
     
         Order order = new Order();
-        order.setId(1);
         order.setCreatedAt(LocalDateTime.now());
         order.setStatus(OrderStatus.WAITING);
         order.setTotal(new BigDecimal("78.60"));
@@ -31,7 +30,7 @@ public class MappingEmbeddedTest extends BaseEntityManager {
         
         persist(order);
         
-        Order assertOrder = entityManager.find(Order.class, 1);
+        Order assertOrder = entityManager.find(Order.class, order.getId());
         Assert.assertNotNull(assertOrder);
         Assert.assertNotNull(assertOrder.getAddress());
     }

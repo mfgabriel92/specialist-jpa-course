@@ -10,13 +10,12 @@ public class MappingEnumsTest extends BaseEntityManager {
     @Test
     public void shouldTestEnum() {
         Client client = new Client();
-        client.setId(3);
         client.setName("John Doe");
         client.setGender(Gender.MALE);
     
         persist(client);
     
-        Client assertClient = entityManager.find(Client.class, 3);
+        Client assertClient = entityManager.find(Client.class, client.getId());
         Assert.assertNotNull(assertClient);
     }
 }

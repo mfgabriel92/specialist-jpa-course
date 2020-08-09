@@ -9,12 +9,11 @@ public class CRUDExerciseTest extends BaseEntityManager {
     @Test
     public void shouldInsertANewClient() {
         Client client = new Client();
-        client.setId(2);
         client.setName("Jeryanne Jane");
         
         persist(client);
         
-        Client clientAssert = entityManager.find(Client.class, 2);
+        Client clientAssert = entityManager.find(Client.class, client.getId());
         Assert.assertNotNull(clientAssert);
         Assert.assertEquals("Jeryanne Jane", clientAssert.getName());
     }

@@ -11,7 +11,6 @@ public class OperationsWithTransactionTest extends BaseEntityManager {
     @Test
     public void shouldInsertNewProduct() {
         Product product = new Product();
-        product.setId(2);
         product.setName("Apple Macbook Pro");
         product.setDescription("The most powerful notebooks featuring fast processors, incredible graphics, Touch Bar, and a spectacular Retina display");
         product.setPrice(new BigDecimal("2399.00"));
@@ -64,7 +63,6 @@ public class OperationsWithTransactionTest extends BaseEntityManager {
     @Test
     public void shouldInsertNewObjectWithMerge() {
         Product product = new Product();
-        product.setId(4);
         product.setName("Microsoft Office");
         product.setDescription("Collaborate for free with online versions of Microsoft Word, PowerPoint, Excel, and OneNote. Save documents, spreadsheets, and presentations online");
         product.setPrice(new BigDecimal("299.00"));

@@ -13,8 +13,9 @@ import java.time.LocalDateTime;
 @Data
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class Order {
-    @Id
     @Include
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     
     @Column(name = "invoice_id")
@@ -24,6 +25,10 @@ public class Order {
     
     @Enumerated(EnumType.STRING)
     private OrderStatus status;
+    
+    @ManyToOne
+    @JoinColumn(name = "client_id")
+    private Client client;
     
     @Column(name = "created_at")
     private LocalDateTime createdAt;
