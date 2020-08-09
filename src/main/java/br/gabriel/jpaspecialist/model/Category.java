@@ -12,8 +12,8 @@ import javax.persistence.*;
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class Category {
     @Include
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
-    @SequenceGenerator(name = "seq", sequenceName = "pks_seq")
+    @GeneratedValue(strategy = GenerationType.TABLE, generator = "table")
+    @TableGenerator(name = "table", table = "hibernate_sequences", pkColumnName = "sequence_name", pkColumnValue = "category", valueColumnName = "next_val", initialValue = 0, allocationSize = 50)
     @Id
     private Integer id;
     
