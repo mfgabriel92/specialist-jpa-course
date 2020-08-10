@@ -7,3 +7,5 @@ INSERT INTO clients (id, name) VALUES (1, 'Gabriel Fernandes');
 
 INSERT INTO orders (id, apartment, city, neighborhood, number, postal_code, state, street, concluded_at, created_at, status, total, client_id) VALUES (1, null, null, null, null, null, null, null, null, UTC_TIMESTAMP, 'WAITING', 1497.00, 1);
 INSERT INTO order_items (id, price, quantity, order_id, product_id) VALUES (1, 1497.00, 3, 1, 1);
+
+INSERT INTO invoices (id, xml, order_id, created_at) VALUES (1, 'FOO', 1, UTC_TIMESTAMP);

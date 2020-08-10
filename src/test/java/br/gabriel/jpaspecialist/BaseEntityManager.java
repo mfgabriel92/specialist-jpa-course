@@ -35,27 +35,38 @@ public class BaseEntityManager {
         entityManagerFactory.close();
     }
     
+    protected void begin() {
+        entityManager.getTransaction().begin();
+    }
+    
+    protected void commit() {
+        entityManager.getTransaction().commit();
+        entityManager.clear();
+    }
+    
+    protected void rollback() {
+        entityManager.getTransaction().rollback();
+    }
+    
     protected <T> T find(Class<T> clazz, Integer id) {
         return entityManager.find(clazz, id);
     }
     
     protected void persist(Object ...entities) {
-        entityManager.getTransaction().begin();
+        begin();
         Arrays.stream(entities).forEach(entity -> entityManager.persist(entity));
-        entityManager.getTransaction().commit();
-        entityManager.clear();
+        commit();
     }
     
     protected void merge(Object ...entities) {
-        entityManager.getTransaction().begin();
+        begin();
         Arrays.stream(entities).forEach(entity -> entityManager.merge(entity));
-        entityManager.getTransaction().commit();
-        entityManager.clear();
+        commit();
     }
     
     protected void remove(Object ...entities) {
-        entityManager.getTransaction().begin();
+        begin();
         Arrays.stream(entities).forEach(entity -> entityManager.remove(entity));
-        entityManager.getTransaction().commit();
+        commit();
     }
 }
