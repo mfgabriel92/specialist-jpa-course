@@ -37,9 +37,30 @@ public class Order {
     @Column(name = "created_at")
     private LocalDateTime createdAt;
     
+    @Column(name = "updated_at")
+    private LocalDateTime updatedAt;
+    
     @Column(name = "concluded_at")
     private LocalDateTime concludedAt;
     
     @Embedded
     private Address address;
+    
+    private void calculateTotal() {
+        if (items != null) {
+            total = items.stream().map(OrderItem::getPrice).reduce(BigDecimal.ZERO, BigDecimal::add);
+        }
+    }
+    
+    @PrePersist
+    public void prePersist() {
+        setCreatedAt(LocalDateTime.now());
+        calculateTotal();
+    }
+    
+    @PreUpdate
+    public void preUpdate() {
+        setUpdatedAt(LocalDateTime.now());
+        calculateTotal();
+    }
 }

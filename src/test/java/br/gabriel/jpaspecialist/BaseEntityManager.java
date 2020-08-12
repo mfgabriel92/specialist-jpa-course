@@ -48,6 +48,10 @@ public class BaseEntityManager {
         entityManager.getTransaction().rollback();
     }
     
+    protected void clear() {
+        entityManager.clear();;
+    }
+    
     protected <T> T find(Class<T> clazz, Integer id) {
         return entityManager.find(clazz, id);
     }
