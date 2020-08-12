@@ -1,5 +1,6 @@
 package br.gabriel.jpaspecialist.model;
 
+import br.gabriel.jpaspecialist.listener.GenerateInvoiceListener;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.EqualsAndHashCode.Include;
@@ -13,6 +14,7 @@ import java.util.List;
 @Table(name = "orders")
 @Data
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@EntityListeners({GenerateInvoiceListener.class})
 public class Order {
     @Include
     @Id
@@ -46,10 +48,12 @@ public class Order {
     @Embedded
     private Address address;
     
-    private void calculateTotal() {
-        if (items != null) {
-            total = items.stream().map(OrderItem::getPrice).reduce(BigDecimal.ZERO, BigDecimal::add);
-        }
+    public Boolean isPaid() {
+        return OrderStatus.PAID.equals(getStatus());
+    }
+    
+    public Boolean hasInvoice() {
+        return getInvoice() != null;
     }
     
     @PrePersist
@@ -63,4 +67,11 @@ public class Order {
         setUpdatedAt(LocalDateTime.now());
         calculateTotal();
     }
+    
+    private void calculateTotal() {
+        if (items != null) {
+            total = items.stream().map(OrderItem::getPrice).reduce(BigDecimal.ZERO, BigDecimal::add);
+        }
+    }
 }
+
