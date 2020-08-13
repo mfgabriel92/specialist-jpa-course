@@ -36,9 +36,9 @@ public class Product {
     @OneToOne(mappedBy = "product")
     private Stock stock;
     
-    @Column(updatable = false)
+    @Column(name = "created_at", updatable = false)
     private LocalDateTime createdAt;
     
-    @Column(insertable = false)
+    @Column(name = "updated_at", insertable = false)
     private LocalDateTime updatedAt;
 }
