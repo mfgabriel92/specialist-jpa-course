@@ -6,6 +6,7 @@ import lombok.EqualsAndHashCode.Include;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
@@ -34,4 +35,10 @@ public class Product {
     
     @OneToOne(mappedBy = "product")
     private Stock stock;
+    
+    @Column(updatable = false)
+    private LocalDateTime createdAt;
+    
+    @Column(insertable = false)
+    private LocalDateTime updatedAt;
 }
