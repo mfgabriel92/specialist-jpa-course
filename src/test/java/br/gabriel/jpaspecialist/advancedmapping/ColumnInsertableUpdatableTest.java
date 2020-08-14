@@ -20,7 +20,7 @@ public class ColumnInsertableUpdatableTest extends BaseEntityManager {
         
         persist(product);
         
-        Product assertProduct = entityManager.find(Product.class, product.getId());
+        Product assertProduct = find(Product.class, product.getId());
         Assert.assertNotNull(assertProduct.getCategories());
         Assert.assertNull(assertProduct.getUpdatedAt());
     }

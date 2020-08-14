@@ -49,7 +49,11 @@ public class BaseEntityManager {
     }
     
     protected void clear() {
-        entityManager.clear();;
+        entityManager.clear();
+    }
+    
+    protected void flush() {
+        entityManager.flush();
     }
     
     protected <T> T find(Class<T> clazz, Integer id) {
