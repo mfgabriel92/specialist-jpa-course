@@ -29,29 +29,38 @@ public class RelationshipsTest extends BaseEntityManager {
     
     @Test
     public void shouldTestManyToOneChallengeWithOrderItem() {
-//        Client client = entityManager.find(Client.class, 1);
-//        Product product = entityManager.find(Product.class, 1);
-//
-//        OrderItem orderItem = new OrderItem();
-//        orderItem.setProduct(product);
-//        orderItem.setQuantity(3);
-//        orderItem.setPrice(new BigDecimal(orderItem.getQuantity()).multiply(orderItem.getProduct().getPrice()));
-//
-//        Order order = new Order();
-//        order.setTotal(orderItem.getPrice());
-//        order.setStatus(OrderStatus.WAITING);
-//        order.setClient(client);
-//        order.setCreatedAt(LocalDateTime.now());
-//
-//        orderItem.setOrder(order);
-//
-//        persist(order, orderItem);
-//
-//        Order assertOrder = entityManager.find(Order.class, order.getId());
-//        OrderItem assertOrderItem = entityManager.find(OrderItem.class, orderItem.getId());
-//        Assert.assertFalse(assertOrder.getItems().isEmpty());
-//        Assert.assertNotNull(assertOrderItem.getOrder());
-//        Assert.assertNotNull(assertOrderItem.getProduct());
+        begin();
+        
+        Client client = entityManager.find(Client.class, 1);
+        Product product = entityManager.find(Product.class, 1);
+        
+        Order order = new Order();
+        order.setTotal(new BigDecimal("987.65"));
+        order.setStatus(OrderStatus.WAITING);
+        order.setClient(client);
+        order.setCreatedAt(LocalDateTime.now());
+        
+        entityManager.persist(order);
+        entityManager.flush();
+        
+        OrderItem orderItem = new OrderItem();
+        orderItem.setProduct(product);
+        orderItem.setQuantity(3);
+        orderItem.setPrice(new BigDecimal(orderItem.getQuantity()).multiply(orderItem.getProduct().getPrice()));
+        orderItem.setOrder(order);
+        orderItem.setOrderId(order.getId());
+        orderItem.setProduct(product);
+        orderItem.setProductId(product.getId());
+        
+        entityManager.persist(orderItem);
+        entityManager.getTransaction().commit();
+        entityManager.clear();
+
+        Order assertOrder = entityManager.find(Order.class, order.getId());
+        OrderItem assertOrderItem = entityManager.find(OrderItem.class, new OrderProductId(order.getId(), product.getId()));
+        Assert.assertFalse(assertOrder.getItems().isEmpty());
+        Assert.assertNotNull(assertOrderItem.getOrder());
+        Assert.assertNotNull(assertOrderItem.getProduct());
     }
     
     @Test
