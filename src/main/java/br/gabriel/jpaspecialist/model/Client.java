@@ -20,9 +20,23 @@ public class Client {
     
     private String name;
     
+    @Transient
+    private String firstName;
+    
     @Enumerated(EnumType.STRING)
     private Gender gender;
     
     @OneToMany(mappedBy = "client", fetch = FetchType.LAZY)
     private List<Order> orders = new ArrayList<>();
+    
+    @PostLoad
+    private void setFirstName() {
+        if (name != null && !name.isBlank()) {
+            int index = name.indexOf(" ");
+            
+            if (index != -1) {
+                firstName = name.substring(0, index);
+            }
+        }
+    }
 }
