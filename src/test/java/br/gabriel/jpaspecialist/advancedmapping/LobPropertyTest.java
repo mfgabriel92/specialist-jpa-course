@@ -7,7 +7,6 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import java.io.IOException;
-import java.util.Date;
 
 public class LobPropertyTest extends BaseEntityManager {
     @Test
@@ -17,7 +16,6 @@ public class LobPropertyTest extends BaseEntityManager {
         Invoice invoice = new Invoice();
         invoice.setOrder(order);
         invoice.setXml(loadInvoice());
-        invoice.setCreatedAt(new Date());
         
         persist(invoice);
         

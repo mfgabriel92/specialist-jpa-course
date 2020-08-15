@@ -1,8 +1,7 @@
 package br.gabriel.jpaspecialist.model;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.EqualsAndHashCode.Include;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -10,14 +9,9 @@ import java.util.List;
 
 @Entity
 @Table(name = "categories")
-@Data
-@EqualsAndHashCode(onlyExplicitlyIncluded = true)
-public class Category {
-    @Include
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
-    
+@Getter
+@Setter
+public class Category extends BaseEntity {
     private String name;
     
     @ManyToOne

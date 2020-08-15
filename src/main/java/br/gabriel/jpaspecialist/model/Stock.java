@@ -1,21 +1,18 @@
 package br.gabriel.jpaspecialist.model;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.EqualsAndHashCode.Include;
+import lombok.Getter;
+import lombok.Setter;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 @Entity
 @Table(name = "stocks")
-@Data
-@EqualsAndHashCode(onlyExplicitlyIncluded = true)
-public class Stock {
-    @Include
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
-    
+@Setter
+@Getter
+public class Stock extends BaseEntity {
     @OneToOne(optional = false)
     @JoinColumn(name = "product_id")
     private Product product;

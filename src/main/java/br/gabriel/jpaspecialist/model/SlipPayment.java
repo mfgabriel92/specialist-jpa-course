@@ -1,21 +1,15 @@
 package br.gabriel.jpaspecialist.model;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.EqualsAndHashCode.Include;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "slip_payments")
-@Data
-@EqualsAndHashCode(onlyExplicitlyIncluded = true)
-public class SlipPayment {
-    @Include
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
-    
+@Getter
+@Setter
+public class SlipPayment extends BaseEntity {
     @Column(name = "order_id")
     private Integer orderId;
     

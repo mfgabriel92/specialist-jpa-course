@@ -1,21 +1,15 @@
 package br.gabriel.jpaspecialist.model;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.EqualsAndHashCode.Include;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "card_payments")
-@Data
-@EqualsAndHashCode(onlyExplicitlyIncluded = true)
-public class CardPayment {
-    @Include
-    @Id
-    @Column(name = "order_id")
-    private Integer id;
-    
+@Getter
+@Setter
+public class CardPayment extends BaseEntity {
     @MapsId
     @OneToOne(optional = false)
     @JoinColumn(name = "order_id")

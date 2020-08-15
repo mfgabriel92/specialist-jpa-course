@@ -1,24 +1,17 @@
 package br.gabriel.jpaspecialist.model;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.EqualsAndHashCode.Include;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
 @Table(name = "products")
-@Data
-@EqualsAndHashCode(onlyExplicitlyIncluded = true)
-public class Product {
-    @Include
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
-    
+@Getter
+@Setter
+public class Product extends BaseEntity {
     private String name;
     
     private String description;
@@ -50,10 +43,4 @@ public class Product {
     
     @OneToOne(mappedBy = "product")
     private Stock stock;
-    
-    @Column(name = "created_at", updatable = false)
-    private LocalDateTime createdAt;
-    
-    @Column(name = "updated_at", insertable = false)
-    private LocalDateTime updatedAt;
 }

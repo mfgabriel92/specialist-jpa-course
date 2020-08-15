@@ -1,8 +1,7 @@
 package br.gabriel.jpaspecialist.model;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.EqualsAndHashCode.Include;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -13,14 +12,9 @@ import java.util.Map;
 @Entity
 @Table(name = "clients")
 @SecondaryTable(name = "clients_details", pkJoinColumns = @PrimaryKeyJoinColumn(name = "client_id"))
-@Data
-@EqualsAndHashCode(onlyExplicitlyIncluded = true)
-public class Client {
-    @Include
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
-    
+@Setter
+@Getter
+public class Client extends BaseEntity {
     private String name;
     
     @Transient
