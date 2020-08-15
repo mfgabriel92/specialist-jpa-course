@@ -17,7 +17,8 @@ public class Invoice {
     @Column(name = "order_id")
     private Integer id;
     
-    private String xml;
+    @Lob
+    private byte[] xml;
     
     @MapsId
     @OneToOne(optional = false)

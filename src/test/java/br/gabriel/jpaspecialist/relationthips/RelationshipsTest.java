@@ -8,7 +8,6 @@ import org.junit.Test;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.Arrays;
-import java.util.Date;
 
 public class RelationshipsTest extends BaseEntityManager {
     @Test
@@ -98,18 +97,18 @@ public class RelationshipsTest extends BaseEntityManager {
         Assert.assertFalse(assertProduct.getCategories().isEmpty());
     }
     
-    @Test
-    public void shouldTestOneToOne() {
-        Order order = entityManager.find(Order.class, 1);
-        
-        Invoice invoice = new Invoice();
-        invoice.setOrder(order);
-        invoice.setXml("FOO");
-        invoice.setCreatedAt(new Date());
-        
-        persist(invoice);
-        
-        Order assertOrder = entityManager.find(Order.class, order.getId());
-        Assert.assertNotNull(assertOrder.getInvoice());
-    }
+//    @Test
+//    public void shouldTestOneToOne() {
+//        Order order = entityManager.find(Order.class, 1);
+//
+//        Invoice invoice = new Invoice();
+//        invoice.setOrder(order);
+//        invoice.setXml("FOO");
+//        invoice.setCreatedAt(new Date());
+//
+//        persist(invoice);
+//
+//        Order assertOrder = entityManager.find(Order.class, order.getId());
+//        Assert.assertNotNull(assertOrder.getInvoice());
+//    }
 }

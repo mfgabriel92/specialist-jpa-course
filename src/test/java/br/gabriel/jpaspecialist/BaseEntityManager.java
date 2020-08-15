@@ -41,7 +41,7 @@ public class BaseEntityManager {
     
     protected void commit() {
         entityManager.getTransaction().commit();
-        entityManager.clear();
+        clear();
     }
     
     protected void rollback() {
