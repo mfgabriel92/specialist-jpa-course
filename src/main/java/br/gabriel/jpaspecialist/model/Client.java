@@ -5,12 +5,14 @@ import lombok.EqualsAndHashCode;
 import lombok.EqualsAndHashCode.Include;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 @Entity
 @Table(name = "clients")
+@SecondaryTable(name = "clients_details", pkJoinColumns = @PrimaryKeyJoinColumn(name = "client_id"))
 @Data
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class Client {
@@ -25,7 +27,11 @@ public class Client {
     private String firstName;
     
     @Enumerated(EnumType.STRING)
+    @Column(table = "clients_details")
     private Gender gender;
+    
+    @Column(table = "clients_details")
+    private LocalDate birthdate;
     
     @ElementCollection
     @CollectionTable(
