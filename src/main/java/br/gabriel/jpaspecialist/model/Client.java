@@ -7,6 +7,7 @@ import lombok.EqualsAndHashCode.Include;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @Entity
 @Table(name = "clients")
@@ -25,6 +26,15 @@ public class Client {
     
     @Enumerated(EnumType.STRING)
     private Gender gender;
+    
+    @ElementCollection
+    @CollectionTable(
+        name = "clients_contacts",
+        joinColumns = @JoinColumn(name = "client_id")
+    )
+    @MapKeyColumn(name = "type")
+    @Column(name = "value")
+    private Map<String, String> contacts;
     
     @OneToMany(mappedBy = "client", fetch = FetchType.LAZY)
     private List<Order> orders = new ArrayList<>();
