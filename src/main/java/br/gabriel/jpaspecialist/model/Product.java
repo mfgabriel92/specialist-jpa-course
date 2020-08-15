@@ -41,6 +41,13 @@ public class Product {
     @Column(name = "tag")
     private List<String> tags;
     
+    @ElementCollection
+    @CollectionTable(
+        name = "product_attributes",
+        joinColumns = @JoinColumn(name = "product_id")
+    )
+    private List<Attribute> attributes;
+    
     @OneToOne(mappedBy = "product")
     private Stock stock;
     
