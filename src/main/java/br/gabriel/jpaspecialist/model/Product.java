@@ -33,6 +33,14 @@ public class Product {
     )
     private List<Category> categories;
     
+    @ElementCollection
+    @CollectionTable(
+        name = "product_tags",
+        joinColumns = @JoinColumn(name = "product_id")
+    )
+    @Column(name = "tag")
+    private List<String> tags;
+    
     @OneToOne(mappedBy = "product")
     private Stock stock;
     
