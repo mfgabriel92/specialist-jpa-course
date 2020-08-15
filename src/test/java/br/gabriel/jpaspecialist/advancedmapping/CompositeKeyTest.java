@@ -26,10 +26,9 @@ public class CompositeKeyTest extends BaseEntityManager {
         entityManager.flush();
         
         OrderItem orderItem = new OrderItem();
+        orderItem.setId(new OrderItemId(order.getId(), product.getId()));
         orderItem.setOrder(order);
-        orderItem.setOrderId(order.getId());
         orderItem.setProduct(product);
-        orderItem.setProductId(product.getId());
         orderItem.setQuantity(3);
         orderItem.setPrice(new BigDecimal("300.0"));
         
@@ -44,7 +43,7 @@ public class CompositeKeyTest extends BaseEntityManager {
     
     @Test
     public void shouldFindByCompositeId() {
-        OrderItem orderItem = entityManager.find(OrderItem.class, new OrderProductId(1, 1));
+        OrderItem orderItem = entityManager.find(OrderItem.class, new OrderItemId(1, 1));
         Assert.assertNotNull(orderItem);
     }
 }

@@ -44,20 +44,19 @@ public class RelationshipsTest extends BaseEntityManager {
         entityManager.flush();
         
         OrderItem orderItem = new OrderItem();
+        orderItem.setId(new OrderItemId(order.getId(), product.getId()));
         orderItem.setProduct(product);
         orderItem.setQuantity(3);
         orderItem.setPrice(new BigDecimal(orderItem.getQuantity()).multiply(orderItem.getProduct().getPrice()));
         orderItem.setOrder(order);
-        orderItem.setOrderId(order.getId());
         orderItem.setProduct(product);
-        orderItem.setProductId(product.getId());
         
         entityManager.persist(orderItem);
         entityManager.getTransaction().commit();
         entityManager.clear();
 
         Order assertOrder = entityManager.find(Order.class, order.getId());
-        OrderItem assertOrderItem = entityManager.find(OrderItem.class, new OrderProductId(order.getId(), product.getId()));
+        OrderItem assertOrderItem = entityManager.find(OrderItem.class, new OrderItemId(order.getId(), product.getId()));
         Assert.assertFalse(assertOrder.getItems().isEmpty());
         Assert.assertNotNull(assertOrderItem.getOrder());
         Assert.assertNotNull(assertOrderItem.getProduct());
