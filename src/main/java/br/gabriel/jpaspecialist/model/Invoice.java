@@ -14,11 +14,12 @@ import java.util.Date;
 public class Invoice {
     @Include
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "order_id")
     private Integer id;
     
     private String xml;
     
+    @MapsId
     @OneToOne(optional = false)
     @JoinColumn(name = "order_id")
     private Order order;
