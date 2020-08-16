@@ -8,7 +8,11 @@ import java.math.BigDecimal;
 import java.util.List;
 
 @Entity
-@Table(name = "products")
+@Table(
+    name = "products",
+    uniqueConstraints = { @UniqueConstraint(name = "uk_products_name", columnNames = { "name" }) },
+    indexes = { @Index(name = "idx_products_name", columnList = "name") }
+)
 @Getter
 @Setter
 public class Product extends BaseEntity {

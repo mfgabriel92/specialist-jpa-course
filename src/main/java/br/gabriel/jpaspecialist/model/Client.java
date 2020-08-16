@@ -13,7 +13,7 @@ import java.util.Map;
 @Table(
     name = "clients",
     uniqueConstraints = { @UniqueConstraint(name = "uk_clients_cpf", columnNames = { "cpf" }) },
-    indexes = { @Index(name = "idx_name", columnList = "name") }
+    indexes = { @Index(name = "idx_clients_name", columnList = "name") }
 )
 @SecondaryTable(name = "clients_details", pkJoinColumns = @PrimaryKeyJoinColumn(name = "client_id"))
 @Setter
