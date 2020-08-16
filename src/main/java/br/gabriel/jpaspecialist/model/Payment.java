@@ -6,7 +6,9 @@ import lombok.Setter;
 import javax.persistence.*;
 
 @Entity
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+@Table(name = "payments")
+@DiscriminatorColumn(name = "payment_type", discriminatorType = DiscriminatorType.STRING)
+@Inheritance(strategy = InheritanceType.JOINED)
 @Getter
 @Setter
 public abstract class Payment extends BaseEntity {
