@@ -14,7 +14,7 @@ import java.util.List;
 public class InheritanceTest extends BaseEntityManager {
     @Test
     public void shouldInsertPayment() {
-        Order order = find(Order.class, 1);
+        Order order = find(Order.class, 2);
         CardPayment cardPayment = new CardPayment();
         cardPayment.setNumber("1111 3333 5555 7777");
         cardPayment.setStatus(PaymentStatus.RECEIVED);
