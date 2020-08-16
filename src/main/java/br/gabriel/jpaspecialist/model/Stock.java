@@ -3,10 +3,7 @@ package br.gabriel.jpaspecialist.model;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "stocks")
@@ -17,5 +14,6 @@ public class Stock extends BaseEntity {
     @JoinColumn(name = "product_id")
     private Product product;
     
+    @Column(nullable = false)
     private Integer quantity;
 }

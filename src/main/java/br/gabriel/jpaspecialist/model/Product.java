@@ -16,10 +16,13 @@ import java.util.List;
 @Getter
 @Setter
 public class Product extends BaseEntity {
+    @Column(length = 100)
     private String name;
     
+    @Column(columnDefinition = "VARCHAR(276) NOT NULL")
     private String description;
     
+    @Column(nullable = false, precision = 7, scale = 2)
     private BigDecimal price;
     
     @ManyToMany
@@ -37,6 +40,9 @@ public class Product extends BaseEntity {
     )
     @Column(name = "tag")
     private List<String> tags;
+    
+    @Lob
+    private byte[] photo;
     
     @ElementCollection
     @CollectionTable(
