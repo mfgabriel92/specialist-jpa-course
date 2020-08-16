@@ -11,6 +11,4 @@ INSERT INTO orders (id, apartment, city, neighborhood, number, postal_code, stat
 INSERT INTO order_items (order_id, product_id, price, quantity) VALUES (1, 1, 499.00, 2);
 INSERT INTO order_items (order_id, product_id, price, quantity) VALUES (2, 1, 499.00, 1);
 
-INSERT INTO payments (order_id, status, number, payment_type) VALUES (1, 'PROCESSING', '1111 3333 5555 7777', 'card');
-
 INSERT INTO invoices (order_id, xml, created_at) VALUES (1, '<xml />', UTC_TIMESTAMP);

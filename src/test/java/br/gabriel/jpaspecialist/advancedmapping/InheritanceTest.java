@@ -1,10 +1,7 @@
 package br.gabriel.jpaspecialist.advancedmapping;
 
 import br.gabriel.jpaspecialist.BaseEntityManager;
-import br.gabriel.jpaspecialist.model.CardPayment;
-import br.gabriel.jpaspecialist.model.Order;
-import br.gabriel.jpaspecialist.model.Payment;
-import br.gabriel.jpaspecialist.model.PaymentStatus;
+import br.gabriel.jpaspecialist.model.*;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -14,17 +11,29 @@ import java.util.List;
 public class InheritanceTest extends BaseEntityManager {
     @Test
     public void shouldInsertPayment() {
-        Order order = find(Order.class, 2);
+        Order order1 = find(Order.class, 1);
+        Order order2 = find(Order.class, 2);
+
         CardPayment cardPayment = new CardPayment();
         cardPayment.setNumber("1111 3333 5555 7777");
         cardPayment.setStatus(PaymentStatus.RECEIVED);
-        cardPayment.setOrder(order);
+        cardPayment.setOrder(order1);
+    
+        SlipPayment slipPayment = new SlipPayment();
+        slipPayment.setBarCode("A-0010-Z");
+        slipPayment.setStatus(PaymentStatus.PROCESSING);
+        slipPayment.setOrder(order2);
         
-        persist(cardPayment);
+        persist(cardPayment, slipPayment);
         clear();
         
-        Order assertOrder = find(Order.class, order.getId());
-        Assert.assertNotNull(assertOrder.getPayment());
+        Order assertOrder1 = find(Order.class, order1.getId());
+        Assert.assertNotNull(assertOrder1.getPayment());
+        Assert.assertEquals("RECEIVED", assertOrder1.getPayment().getStatus().name());
+    
+        Order assertOrder2 = find(Order.class, order2.getId());
+        Assert.assertNotNull(assertOrder2.getPayment());
+        Assert.assertEquals("PROCESSING", assertOrder2.getPayment().getStatus().name());
     }
     
     @Test
