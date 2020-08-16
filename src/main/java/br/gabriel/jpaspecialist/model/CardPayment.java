@@ -3,20 +3,13 @@ package br.gabriel.jpaspecialist.model;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 
 @Entity
 @Table(name = "card_payments")
 @Getter
 @Setter
-public class CardPayment extends BaseEntity {
-    @MapsId
-    @OneToOne(optional = false)
-    @JoinColumn(name = "order_id")
-    private Order order;
-    
-    @Enumerated(EnumType.STRING)
-    private PaymentStatus status;
-    
+public class CardPayment extends Payment {
     private String number;
 }

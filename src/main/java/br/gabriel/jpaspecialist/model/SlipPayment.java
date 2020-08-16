@@ -3,18 +3,13 @@ package br.gabriel.jpaspecialist.model;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 
 @Entity
 @Table(name = "slip_payments")
 @Getter
 @Setter
-public class SlipPayment extends BaseEntity {
-    @Column(name = "order_id")
-    private Integer orderId;
-    
-    @Enumerated(EnumType.STRING)
-    private PaymentStatus status;
-    
+public class SlipPayment extends Payment {
     private String barCode;
 }

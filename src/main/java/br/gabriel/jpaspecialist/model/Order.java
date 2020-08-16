@@ -28,6 +28,9 @@ public class Order extends BaseEntity {
     @OneToMany(mappedBy = "order")
     private List<OrderItem> items;
     
+    @OneToOne(mappedBy = "order")
+    private Payment payment;
+    
     @Column(name = "concluded_at")
     private LocalDateTime concludedAt;
     

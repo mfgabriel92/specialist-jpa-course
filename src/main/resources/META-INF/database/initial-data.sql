@@ -5,8 +5,12 @@ INSERT INTO categories (id, name) VALUES (1, 'Electronics');
 
 INSERT INTO clients (id, name) VALUES (1, 'Gabriel Fernandes');
 
-INSERT INTO orders (id, apartment, city, neighborhood, number, postal_code, state, street, concluded_at, created_at, status, total, client_id) VALUES (1, null, null, null, null, null, null, null, null, UTC_TIMESTAMP, 'WAITING', 1497.00, 1);
+INSERT INTO orders (id, apartment, city, neighborhood, number, postal_code, state, street, concluded_at, created_at, status, total, client_id) VALUES (1, null, null, null, null, null, null, null, null, UTC_TIMESTAMP, 'WAITING', 998.00, 1);
+INSERT INTO orders (id, apartment, city, neighborhood, number, postal_code, state, street, concluded_at, created_at, status, total, client_id) VALUES (1, null, null, null, null, null, null, null, null, UTC_TIMESTAMP, 'WAITING', 499.00, 1);
 
-INSERT INTO order_items (order_id, product_id, price, quantity) VALUES (1, 1, 1497.00, 3);
+INSERT INTO order_items (order_id, product_id, price, quantity) VALUES (1, 1, 499.00, 2);
+INSERT INTO order_items (order_id, product_id, price, quantity) VALUES (2, 1, 499.00, 1);
 
-INSERT INTO invoices (id, xml, order_id, created_at) VALUES (1, 'FOO', 1, UTC_TIMESTAMP);
+INSERT INTO payments (order_id, status, number, DTYPE) VALUES (1, 'PROCESSING', '1111 3333 5555 7777', 'CardPayment');
+
+INSERT INTO invoices (order_id, xml, created_at) VALUES (1, '<xml />', UTC_TIMESTAMP);
