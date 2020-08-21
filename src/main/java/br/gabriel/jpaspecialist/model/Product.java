@@ -28,8 +28,8 @@ public class Product extends BaseEntity {
     @ManyToMany
     @JoinTable(
         name = "products_categories",
-        joinColumns = @JoinColumn(name = "product_id", foreignKey = @ForeignKey(name = "fk_products_categories")),
-        inverseJoinColumns = @JoinColumn(name = "category_id", foreignKey = @ForeignKey(name = "fk_categories_products"))
+        joinColumns = @JoinColumn(name = "product_id", foreignKey = @ForeignKey(name = "fk_products_categories_products")),
+        inverseJoinColumns = @JoinColumn(name = "category_id", foreignKey = @ForeignKey(name = "fk_products_categories_categories"))
     )
     private List<Category> categories;
     

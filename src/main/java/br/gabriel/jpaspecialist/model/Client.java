@@ -15,7 +15,11 @@ import java.util.Map;
     uniqueConstraints = { @UniqueConstraint(name = "uk_clients_cpf", columnNames = { "cpf" }) },
     indexes = { @Index(name = "idx_clients_name", columnList = "name") }
 )
-@SecondaryTable(name = "clients_details", pkJoinColumns = @PrimaryKeyJoinColumn(name = "client_id"))
+@SecondaryTable(
+    name = "clients_details",
+    pkJoinColumns = @PrimaryKeyJoinColumn(name = "client_id"),
+    foreignKey = @ForeignKey(name = "fk_clients_details_clients")
+)
 @Setter
 @Getter
 public class Client extends BaseEntity {
