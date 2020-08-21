@@ -11,7 +11,11 @@ import javax.persistence.*;
 @Getter
 public class Stock extends BaseEntity {
     @OneToOne(optional = false)
-    @JoinColumn(name = "product_id", nullable = false)
+    @JoinColumn(
+        name = "product_id",
+        nullable = false,
+        foreignKey = @ForeignKey(name = "fk_stocks_products")
+    )
     private Product product;
     
     @Column(nullable = false)

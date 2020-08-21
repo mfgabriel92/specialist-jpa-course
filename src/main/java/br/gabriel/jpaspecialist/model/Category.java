@@ -19,7 +19,10 @@ public class Category extends BaseEntity {
     private String name;
     
     @ManyToOne
-    @JoinColumn(name = "parent_category_id")
+    @JoinColumn(
+        name = "parent_category_id",
+        foreignKey = @ForeignKey(name = "fk_categories_categories")
+    )
     private Category parentCategory;
     
     @OneToMany(mappedBy = "parentCategory")

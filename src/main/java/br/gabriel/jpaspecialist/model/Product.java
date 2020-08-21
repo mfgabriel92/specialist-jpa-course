@@ -28,15 +28,15 @@ public class Product extends BaseEntity {
     @ManyToMany
     @JoinTable(
         name = "products_categories",
-        joinColumns = @JoinColumn(name = "product_id"),
-        inverseJoinColumns = @JoinColumn(name = "category_id")
+        joinColumns = @JoinColumn(name = "product_id", foreignKey = @ForeignKey(name = "fk_products_categories")),
+        inverseJoinColumns = @JoinColumn(name = "category_id", foreignKey = @ForeignKey(name = "fk_categories_products"))
     )
     private List<Category> categories;
     
     @ElementCollection
     @CollectionTable(
         name = "product_tags",
-        joinColumns = @JoinColumn(name = "product_id")
+        joinColumns = @JoinColumn(name = "product_id", foreignKey = @ForeignKey(name = "fk_products_tags"))
     )
     @Column(name = "tag", length = 21)
     private List<String> tags;
@@ -47,7 +47,7 @@ public class Product extends BaseEntity {
     @ElementCollection
     @CollectionTable(
         name = "product_attributes",
-        joinColumns = @JoinColumn(name = "product_id")
+        joinColumns = @JoinColumn(name = "product_id", foreignKey = @ForeignKey(name = "fk_products_attributes"))
     )
     private List<Attribute> attributes;
     
