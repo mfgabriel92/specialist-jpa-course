@@ -19,7 +19,7 @@ public class Product extends BaseEntity {
     @Column(length = 100)
     private String name;
     
-    @Column(columnDefinition = "VARCHAR(276) NOT NULL")
+    @Column(length = 276, nullable = false)
     private String description;
     
     @Column(nullable = false, precision = 7, scale = 2)
@@ -38,7 +38,7 @@ public class Product extends BaseEntity {
         name = "product_tags",
         joinColumns = @JoinColumn(name = "product_id")
     )
-    @Column(name = "tag")
+    @Column(name = "tag", length = 21)
     private List<String> tags;
     
     @Lob

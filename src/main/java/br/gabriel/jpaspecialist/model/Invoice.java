@@ -11,10 +11,11 @@ import javax.persistence.*;
 @Setter
 public class Invoice extends BaseEntity {
     @Lob
+    @Column(nullable = false)
     private byte[] xml;
     
     @MapsId
     @OneToOne(optional = false)
-    @JoinColumn(name = "order_id")
+    @JoinColumn(name = "order_id", nullable = false)
     private Order order;
 }

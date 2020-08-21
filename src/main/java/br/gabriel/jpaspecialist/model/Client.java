@@ -19,15 +19,17 @@ import java.util.Map;
 @Setter
 @Getter
 public class Client extends BaseEntity {
+    @Column(length = 50, nullable = false)
     private String name;
     
+    @Column(length = 14, nullable = false)
     private String cpf;
     
     @Transient
     private String firstName;
     
     @Enumerated(EnumType.STRING)
-    @Column(table = "clients_details")
+    @Column(table = "clients_details", length = 6, nullable = false)
     private Gender gender;
     
     @Column(table = "clients_details")
