@@ -16,6 +16,10 @@ public class Invoice extends BaseEntity {
     
     @MapsId
     @OneToOne(optional = false)
-    @JoinColumn(name = "order_id", nullable = false)
+    @JoinColumn(
+        name = "order_id",
+        nullable = false,
+        foreignKey = @ForeignKey(name = "fk_invoices_orders")
+    )
     private Order order;
 }

@@ -14,7 +14,11 @@ import javax.persistence.*;
 public abstract class Payment extends BaseEntity {
     @MapsId
     @OneToOne(optional = false)
-    @JoinColumn(name = "order_id")
+    @JoinColumn(
+        name = "order_id",
+        nullable = false,
+        foreignKey = @ForeignKey(name = "fk_payments_orders")
+    )
     private Order order;
     
     @Enumerated(EnumType.STRING)

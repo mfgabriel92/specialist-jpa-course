@@ -24,7 +24,10 @@ public class Order extends BaseEntity {
     private OrderStatus status;
     
     @ManyToOne(optional = false)
-    @JoinColumn(name = "client_id")
+    @JoinColumn(
+        name = "client_id",
+        foreignKey = @ForeignKey(name = "fk_orders_clients")
+    )
     private Client client;
     
     @OneToMany(mappedBy = "order")

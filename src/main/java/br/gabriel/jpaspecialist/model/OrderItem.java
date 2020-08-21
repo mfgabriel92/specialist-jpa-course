@@ -18,12 +18,20 @@ public class OrderItem {
 
     @MapsId("orderId")
     @ManyToOne(optional = false)
-    @JoinColumn(name = "order_id")
+    @JoinColumn(
+        name = "order_id",
+        nullable = false,
+        foreignKey = @ForeignKey(name = "fk_order_items_items")
+    )
     private Order order;
     
     @MapsId("productId")
     @ManyToOne(optional = false)
-    @JoinColumn(name = "product_id")
+    @JoinColumn(
+        name = "product_id",
+        nullable = false,
+        foreignKey = @ForeignKey(name = "fk_order_items_products")
+    )
     private Product product;
     
     @Column(nullable = false)
