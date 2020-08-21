@@ -19,7 +19,7 @@ public class Product extends BaseEntity {
     @Column(length = 100)
     private String name;
     
-    @Column(length = 276, nullable = false)
+    @Lob
     private String description;
     
     @Column(nullable = false, precision = 7, scale = 2)
