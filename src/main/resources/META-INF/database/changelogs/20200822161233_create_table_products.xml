@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+    <changeSet id="20200822161233" author="gabriel">
+        <createTable tableName="products">
+            <column name="id" type="INTEGER" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="name" type="VARCHAR(50)">
+                <constraints nullable="false" unique="true" uniqueConstraintName="uk_products_name"/>
+            </column>
+            <column name="price" type="CURRENCY(7, 2)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="photo" type="CLOB"/>
+            <column name="description" type="CLOB"/>
+            <column name="created_at" type="DATETIME"/>
+            <column name="updated_at" type="DATETIME"/>
+        </createTable>
+        <createIndex tableName="products" indexName="idx_products_name" unique="true">
+            <column name="name"/>
+        </createIndex>
+    </changeSet>
+</databaseChangeLog>

@@ -13,6 +13,7 @@ public class SecondaryTableTest extends BaseEntityManager {
     public void shouldTestSecondaryTable() {
         Client client = new Client();
         client.setName("Charles Robert Darwin");
+        client.setCpf("00000000000");
         client.setGender(Gender.MALE);
         client.setBirthdate(LocalDate.of(1809, 2, 12));
         

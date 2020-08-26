@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+    <changeSet id="20200822162856" author="gabriel">
+        <createTable tableName="products_categories">
+            <column name="product_id" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="category_id" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addForeignKeyConstraint
+            constraintName="fk_products_categories_products"
+            baseTableName="products_categories"
+            baseColumnNames="product_id"
+            referencedTableName="products"
+            referencedColumnNames="id"
+        />
+        <addForeignKeyConstraint
+            constraintName="fk_products_categories_categories"
+            baseTableName="products_categories"
+            baseColumnNames="category_id"
+            referencedTableName="categories"
+            referencedColumnNames="id"
+        />
+    </changeSet>
+</databaseChangeLog>

@@ -16,18 +16,13 @@ public class Order extends BaseEntity {
     @OneToOne(mappedBy = "order")
     private Invoice invoice;
     
-    @Column(nullable = false)
     private BigDecimal total;
     
     @Enumerated(EnumType.STRING)
-    @Column(length = 30, nullable = false)
     private OrderStatus status;
     
     @ManyToOne(optional = false)
-    @JoinColumn(
-        name = "client_id",
-        foreignKey = @ForeignKey(name = "fk_orders_clients")
-    )
+    @JoinColumn(name = "client_id" )
     private Client client;
     
     @OneToMany(mappedBy = "order")

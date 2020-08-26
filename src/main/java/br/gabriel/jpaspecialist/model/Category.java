@@ -8,21 +8,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(
-    name = "categories",
-    uniqueConstraints = { @UniqueConstraint(name = "uk_categories_name", columnNames = { "name" }) }
-)
+@Table(name = "categories")
 @Getter
 @Setter
 public class Category extends BaseEntity {
-    @Column(length = 50, nullable = false)
     private String name;
     
     @ManyToOne
-    @JoinColumn(
-        name = "parent_category_id",
-        foreignKey = @ForeignKey(name = "fk_categories_categories")
-    )
+    @JoinColumn(name = "parent_category_id")
     private Category parentCategory;
     
     @OneToMany(mappedBy = "parentCategory")

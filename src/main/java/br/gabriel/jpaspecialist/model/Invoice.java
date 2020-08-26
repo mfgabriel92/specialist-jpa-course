@@ -11,15 +11,10 @@ import javax.persistence.*;
 @Setter
 public class Invoice extends BaseEntity {
     @Lob
-    @Column(nullable = false)
     private byte[] xml;
     
     @MapsId
     @OneToOne(optional = false)
-    @JoinColumn(
-        name = "order_id",
-        nullable = false,
-        foreignKey = @ForeignKey(name = "fk_invoices_orders")
-    )
+    @JoinColumn(name = "order_id")
     private Order order;
 }

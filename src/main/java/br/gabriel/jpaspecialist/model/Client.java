@@ -10,23 +10,16 @@ import java.util.List;
 import java.util.Map;
 
 @Entity
-@Table(
-    name = "clients",
-    uniqueConstraints = { @UniqueConstraint(name = "uk_clients_cpf", columnNames = { "cpf" }) },
-    indexes = { @Index(name = "idx_clients_name", columnList = "name") }
-)
+@Table(name = "clients")
 @SecondaryTable(
     name = "clients_details",
-    pkJoinColumns = @PrimaryKeyJoinColumn(name = "client_id"),
-    foreignKey = @ForeignKey(name = "fk_clients_details_clients")
+    pkJoinColumns = @PrimaryKeyJoinColumn(name = "client_id")
 )
 @Setter
 @Getter
 public class Client extends BaseEntity {
-    @Column(length = 50, nullable = false)
     private String name;
     
-    @Column(length = 14, nullable = false)
     private String cpf;
     
     @Transient

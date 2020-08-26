@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+    <changeSet id="20200821194534" author="gabriel">
+        <createTable tableName="categories">
+            <column name="id" type="INTEGER" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="name" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="parent_category_id" type="INTEGER" />
+            <column name="created_at" type="DATETIME"/>
+            <column name="updated_at" type="DATETIME"/>
+        </createTable>
+        <createIndex tableName="categories" indexName="name" unique="true">
+            <column name="name"/>
+        </createIndex>
+        <addForeignKeyConstraint
+            constraintName="fk_categories_categories"
+            baseTableName="categories"
+            baseColumnNames="parent_category_id"
+            referencedTableName="categories"
+            referencedColumnNames="id"
+        />
+    </changeSet>
+</databaseChangeLog>

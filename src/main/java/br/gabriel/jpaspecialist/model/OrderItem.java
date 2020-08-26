@@ -18,25 +18,15 @@ public class OrderItem {
 
     @MapsId("orderId")
     @ManyToOne(optional = false)
-    @JoinColumn(
-        name = "order_id",
-        nullable = false,
-        foreignKey = @ForeignKey(name = "fk_order_items_items")
-    )
+    @JoinColumn(name = "order_id")
     private Order order;
     
     @MapsId("productId")
     @ManyToOne(optional = false)
-    @JoinColumn(
-        name = "product_id",
-        nullable = false,
-        foreignKey = @ForeignKey(name = "fk_order_items_products")
-    )
+    @JoinColumn(name = "product_id")
     private Product product;
     
-    @Column(nullable = false)
     private Integer quantity;
     
-    @Column(nullable = false)
     private BigDecimal price;
 }

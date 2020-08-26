@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+    <include file="META-INF/database/changelogs/20200821194534_create_table_categories.xml"/>
+    <include file="META-INF/database/changelogs/20200821201339_create_table_clients.xml"/>
+    <include file="META-INF/database/changelogs/20200822095952_create_table_clients_details.xml"/>
+    <include file="META-INF/database/changelogs/20200822101456_create_table_clients_contacts.xml"/>
+    <include file="META-INF/database/changelogs/20200822161233_create_table_products.xml"/>
+    <include file="META-INF/database/changelogs/20200822162856_create_table_products_categories.xml"/>
+    <include file="META-INF/database/changelogs/20200822165415_create_table_products_tags.xml"/>
+    <include file="META-INF/database/changelogs/20200822165448_create_table_products_attributes.xml"/>
+    <include file="META-INF/database/changelogs/20200825201444_create_table_orders.xml"/>
+    <include file="META-INF/database/changelogs/20200825201800_create_table_invoice.xml"/>
+    <include file="META-INF/database/changelogs/20200825203005_create_table_order_items.xml"/>
+    <include file="META-INF/database/changelogs/20200825203709_create_table_payments.xml"/>
+    <include file="META-INF/database/changelogs/20200825205827_create_table_stocks.xml"/>
+</databaseChangeLog>

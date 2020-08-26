@@ -6,6 +6,6 @@ import org.junit.Test;
 public class DDLTest extends BaseEntityManager {
     @Test
     public void shouldTestDDL() {
-        // Just to execute it
+    
     }
 }
