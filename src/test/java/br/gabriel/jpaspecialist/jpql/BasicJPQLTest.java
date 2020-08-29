@@ -24,4 +24,16 @@ public class BasicJPQLTest extends BaseEntityManager {
     
         Assert.assertFalse(orders.isEmpty());
     }
+    
+    @Test
+    public void shouldProjectTheResult() {
+        String jpql = "select id, name FROM Product";
+        
+        TypedQuery<Object[]> typedQuery = entityManager.createQuery(jpql, Object[].class);
+        List<Object[]> list = typedQuery.getResultList();
+    
+        Assert.assertEquals(2, list.get(0).length);
+        
+        list.forEach(a -> System.out.printf("%s: %s%n", a[0], a[1]));
+    }
 }
