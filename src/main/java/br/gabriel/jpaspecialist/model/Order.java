@@ -22,10 +22,10 @@ public class Order extends BaseEntity {
     private OrderStatus status;
     
     @ManyToOne(optional = false)
-    @JoinColumn(name = "client_id" )
+    @JoinColumn(name = "client_id")
     private Client client;
     
-    @OneToMany(mappedBy = "order")
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
     private List<OrderItem> items;
     
     @OneToOne(mappedBy = "order")
