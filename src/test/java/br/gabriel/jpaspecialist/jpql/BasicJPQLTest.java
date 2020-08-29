@@ -16,4 +16,12 @@ public class BasicJPQLTest extends BaseEntityManager {
     
         Assert.assertFalse(orders.isEmpty());
     }
+    
+    @Test
+    public void shouldChooseAnAttributeToReturn() {
+        TypedQuery<String> typedQuery = entityManager.createQuery("SELECT o.client.name FROM Order o WHERE o.id = 1", String.class);
+        List<String> orders = typedQuery.getResultList();
+    
+        Assert.assertFalse(orders.isEmpty());
+    }
 }
