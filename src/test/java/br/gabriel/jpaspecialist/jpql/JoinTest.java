@@ -1,6 +1,7 @@
 package br.gabriel.jpaspecialist.jpql;
 
 import br.gabriel.jpaspecialist.BaseEntityManager;
+import org.junit.Assert;
 import org.junit.Test;
 
 import javax.persistence.TypedQuery;
@@ -14,6 +15,16 @@ public class JoinTest extends BaseEntityManager {
         TypedQuery<Object[]> typedQuery = entityManager.createQuery(jpql, Object[].class);
         List<Object[]> list = typedQuery.getResultList();
     
-        System.out.println(list);
+        Assert.assertFalse(list.isEmpty());
+    }
+    
+    @Test
+    public void shouldDoLeftJoin() {
+        String jpql = "select p, py FROM Order p LEFT JOIN p.payment py ON py.status = 'WAITING'";
+    
+        TypedQuery<Object[]> typedQuery = entityManager.createQuery(jpql, Object[].class);
+        List<Object[]> list = typedQuery.getResultList();
+    
+        Assert.assertFalse(list.isEmpty());
     }
 }
