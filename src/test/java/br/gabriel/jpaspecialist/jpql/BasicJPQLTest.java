@@ -1,6 +1,7 @@
 package br.gabriel.jpaspecialist.jpql;
 
 import br.gabriel.jpaspecialist.BaseEntityManager;
+import br.gabriel.jpaspecialist.dto.ProductDTO;
 import br.gabriel.jpaspecialist.model.Order;
 import org.junit.Assert;
 import org.junit.Test;
@@ -35,5 +36,17 @@ public class BasicJPQLTest extends BaseEntityManager {
         Assert.assertEquals(2, list.get(0).length);
         
         list.forEach(a -> System.out.printf("%s: %s%n", a[0], a[1]));
+    }
+    
+    @Test
+    public void shouldProjectDTO() {
+        String jpql = "select new br.gabriel.jpaspecialist.dto.ProductDTO(id, name) FROM Product";
+    
+        TypedQuery<ProductDTO> typedQuery = entityManager.createQuery(jpql, ProductDTO.class);
+        List<ProductDTO> list = typedQuery.getResultList();
+        
+        Assert.assertFalse(list.isEmpty());
+    
+        list.forEach(a -> System.out.printf("%s: %s%n", a.getId(), a.getName()));
     }
 }
