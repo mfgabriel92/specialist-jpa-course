@@ -20,11 +20,19 @@ public class JoinTest extends BaseEntityManager {
     
     @Test
     public void shouldDoLeftJoin() {
-        String jpql = "select p, py FROM Order p LEFT JOIN p.payment py ON py.status = 'WAITING'";
+        String jpql = "SELECT p, py FROM Order p LEFT JOIN p.payment py ON py.status = 'WAITING'";
     
         TypedQuery<Object[]> typedQuery = entityManager.createQuery(jpql, Object[].class);
         List<Object[]> list = typedQuery.getResultList();
     
         Assert.assertFalse(list.isEmpty());
+    }
+    
+    @Test
+    public void shouldDoFetch() {
+        String jpql = "SELECT o FROM Order o JOIN FETCH o.client LEFT JOIN FETCH o.items";
+    
+        TypedQuery<Object[]> typedQuery = entityManager.createQuery(jpql, Object[].class);
+        List<Object[]> list = typedQuery.getResultList();
     }
 }
