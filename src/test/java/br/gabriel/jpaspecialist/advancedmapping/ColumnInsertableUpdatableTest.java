@@ -6,7 +6,6 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
 
 public class ColumnInsertableUpdatableTest extends BaseEntityManager {
     @Test
@@ -15,8 +14,6 @@ public class ColumnInsertableUpdatableTest extends BaseEntityManager {
         product.setName("Lorem");
         product.setDescription("Lorem ipsum");
         product.setPrice(BigDecimal.TEN);
-        product.setCreatedAt(LocalDateTime.now());
-        product.setUpdatedAt(LocalDateTime.now());
         
         persist(product);
         

@@ -9,7 +9,6 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
 
 public class MappingEmbeddedTest extends BaseEntityManager {
     @Test
@@ -26,7 +25,6 @@ public class MappingEmbeddedTest extends BaseEntityManager {
         address.setState("Amet");
     
         Order order = new Order();
-        order.setCreatedAt(LocalDateTime.now());
         order.setStatus(OrderStatus.WAITING);
         order.setTotal(new BigDecimal("78.60"));
         order.setAddress(address);

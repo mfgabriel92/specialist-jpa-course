@@ -6,7 +6,6 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
 
 public class CompositeKeyTest extends BaseEntityManager {
     @Test
@@ -20,7 +19,6 @@ public class CompositeKeyTest extends BaseEntityManager {
         order.setTotal(new BigDecimal("100.00"));
         order.setStatus(OrderStatus.WAITING);
         order.setClient(client);
-        order.setCreatedAt(LocalDateTime.now());
         
         entityManager.persist(order);
         entityManager.flush();

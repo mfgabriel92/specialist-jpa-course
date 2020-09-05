@@ -6,7 +6,6 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
 import java.util.Arrays;
 
 public class RelationshipsTest extends BaseEntityManager {
@@ -17,7 +16,6 @@ public class RelationshipsTest extends BaseEntityManager {
         order.setTotal(new BigDecimal("18.75"));
         order.setStatus(OrderStatus.WAITING);
         order.setClient(client);
-        order.setCreatedAt(LocalDateTime.now());
         
         persist(order);
     
@@ -37,7 +35,6 @@ public class RelationshipsTest extends BaseEntityManager {
         order.setTotal(new BigDecimal("987.65"));
         order.setStatus(OrderStatus.WAITING);
         order.setClient(client);
-        order.setCreatedAt(LocalDateTime.now());
         
         entityManager.persist(order);
         entityManager.flush();
@@ -75,7 +72,6 @@ public class RelationshipsTest extends BaseEntityManager {
         order.setTotal(orderItem.getPrice());
         order.setStatus(OrderStatus.WAITING);
         order.setClient(client);
-        order.setCreatedAt(LocalDateTime.now());
         
         orderItem.setOrder(order);
         

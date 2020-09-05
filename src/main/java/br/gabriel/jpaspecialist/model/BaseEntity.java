@@ -5,7 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
+import java.util.Date;
 
 @MappedSuperclass
 @Getter
@@ -17,19 +17,21 @@ public class BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "created_at", updatable = false)
-    private LocalDateTime createdAt;
+    private Date createdAt;
     
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "updated_at", insertable = false)
-    private LocalDateTime updatedAt;
+    private Date updatedAt;
     
     @PrePersist
     public void prePersist() {
-        setCreatedAt(LocalDateTime.now());
+        setCreatedAt(new Date());
     }
     
     @PreUpdate
     public void preUpdate() {
-        setUpdatedAt(LocalDateTime.now());
+        setUpdatedAt(new Date());
     }
 }
