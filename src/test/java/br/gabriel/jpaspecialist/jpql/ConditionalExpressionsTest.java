@@ -18,4 +18,22 @@ public class ConditionalExpressionsTest extends BaseEntityManager {
         List<Object[]> list = typedQuery.getResultList();
         Assert.assertFalse(list.isEmpty());
     }
+    
+    @Test
+    public void shouldTestIsNull() {
+        String jpql = "SELECT p FROM Product p WHERE p.photo IS NULL";
+        
+        TypedQuery<Object[]> typedQuery = entityManager.createQuery(jpql, Object[].class);
+        List<Object[]> list = typedQuery.getResultList();
+        Assert.assertFalse(list.isEmpty());
+    }
+    
+    @Test
+    public void shouldTestIsEmpty() {
+        String jpql = "SELECT p FROM Product p WHERE p.categories IS EMPTY";
+        
+        TypedQuery<Object[]> typedQuery = entityManager.createQuery(jpql, Object[].class);
+        List<Object[]> list = typedQuery.getResultList();
+        Assert.assertFalse(list.isEmpty());
+    }
 }
