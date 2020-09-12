@@ -31,4 +31,15 @@ public class GroupByTest extends BaseEntityManager {
         
         list.forEach(i -> System.out.printf("%s: %s\n", i[0], i[1]));
     }
+    
+    @Test
+    public void shouldTestHaving() {
+        String jpql = "SELECT c.name, SUM(oi.price) FROM OrderItem oi JOIN oi.product p JOIN p.categories c GROUP BY c.id HAVING SUM(oi.price) > 1000";
+    
+        TypedQuery<Object[]> typedQuery = entityManager.createQuery(jpql, Object[].class);
+        List<Object[]> list = typedQuery.getResultList();
+        Assert.assertFalse(list.isEmpty());
+    
+        list.forEach(i -> System.out.printf("%s: %s\n", i[0], i[1]));
+    }
 }
