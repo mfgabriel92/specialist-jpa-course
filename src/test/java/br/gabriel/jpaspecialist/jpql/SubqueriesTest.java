@@ -19,4 +19,14 @@ public class SubqueriesTest extends BaseEntityManager {
         List<Product> list = typedQuery.getResultList();
         Assert.assertFalse(list.isEmpty());
     }
+    
+    @Test
+    public void shouldDoSubqueryWithExists() {
+        String jpql = "SELECT p FROM Product p " +
+            "WHERE EXISTS (SELECT 1 FROM OrderItem oi JOIN oi.product p2 WHERE p2 = p)";
+        
+        TypedQuery<Product> typedQuery = entityManager.createQuery(jpql, Product.class);
+        List<Product> list = typedQuery.getResultList();
+        Assert.assertFalse(list.isEmpty());
+    }
 }
