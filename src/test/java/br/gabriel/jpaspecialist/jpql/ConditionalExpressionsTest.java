@@ -36,4 +36,27 @@ public class ConditionalExpressionsTest extends BaseEntityManager {
         List<Object[]> list = typedQuery.getResultList();
         Assert.assertFalse(list.isEmpty());
     }
+    
+    @Test
+    public void shouldTestCase() {
+//        String jpql = "SELECT o.id," +
+//            "CASE o.status" +
+//            "   WHEN 'WAITING' THEN 'Waiting'" +
+//            "   WHEN 'PAID' THEN 'Paid'" +
+//            "   ELSE 'Canceled'" +
+//            "END " +
+//            "FROM Order o";
+    
+        String jpql = "SELECT o.id," +
+            "CASE TYPE(o.payment)" +
+            "   WHEN CardPayment THEN 'Paid with credit/debit card'" +
+            "   WHEN SlipPayment THEN 'Paid with slip'" +
+            "   ELSE 'Not paid'" +
+            "END " +
+            "FROM Order o";
+        
+        TypedQuery<Object[]> typedQuery = entityManager.createQuery(jpql, Object[].class);
+        List<Object[]> list = typedQuery.getResultList();
+        Assert.assertFalse(list.isEmpty());
+    }
 }
