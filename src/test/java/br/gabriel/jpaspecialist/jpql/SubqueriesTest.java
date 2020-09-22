@@ -29,4 +29,13 @@ public class SubqueriesTest extends BaseEntityManager {
         List<Product> list = typedQuery.getResultList();
         Assert.assertFalse(list.isEmpty());
     }
+    
+    @Test
+    public void shouldDoSubqueryWithAny() {
+        String jpql = "SELECT p.price FROM Product p WHERE p.price = ANY(SELECT price FROM OrderItem WHERE product = p)";
+        
+        TypedQuery<Object[]> typedQuery = entityManager.createQuery(jpql, Object[].class);
+        List<Object[]> list = typedQuery.getResultList();
+        Assert.assertFalse(list.isEmpty());
+    }
 }

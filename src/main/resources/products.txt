@@ -1,0 +1,2 @@
+Product 1;Lorem ipsum dolor;1200
+Product 2;Sit amet;230
