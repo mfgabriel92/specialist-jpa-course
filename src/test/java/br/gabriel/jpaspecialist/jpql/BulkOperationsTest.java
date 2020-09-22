@@ -4,6 +4,7 @@ import br.gabriel.jpaspecialist.BaseEntityManager;
 import br.gabriel.jpaspecialist.model.Product;
 import org.junit.Test;
 
+import javax.persistence.Query;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -38,6 +39,17 @@ public class BulkOperationsTest extends BaseEntityManager {
                 count = 0;
             }
         }
+        
+        commit();
+    }
+    
+    @Test
+    public void shouldBulkUpdate() {
+        begin();
+        
+        String jpql = "UPDATE Product p SET p.price = p.price + 50";
+        Query query = entityManager.createQuery(jpql);
+        query.executeUpdate();
         
         commit();
     }
